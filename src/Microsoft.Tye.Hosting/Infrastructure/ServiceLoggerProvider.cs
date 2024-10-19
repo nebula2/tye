@@ -6,58 +6,52 @@ using System;
 using System.Reactive.Subjects;
 using Microsoft.Extensions.Logging;
 
-namespace Microsoft.Tye.Hosting
+namespace Microsoft.Tye.Hosting;
+
+internal class ServiceLoggerProvider(Subject<string> logs) : ILoggerProvider
 {
-    internal class ServiceLoggerProvider : ILoggerProvider
+    private readonly Subject<string> _logs = logs;
+
+    public ILogger CreateLogger(string categoryName)
     {
+        return new ServiceLogger(categoryName, _logs);
+    }
+
+    public void Dispose()
+    {
+    }
+
+    private class ServiceLogger : ILogger
+    {
+        private readonly string _categoryName;
         private readonly Subject<string> _logs;
 
-        public ServiceLoggerProvider(Subject<string> logs)
+        public ServiceLogger(string categoryName, Subject<string> logs)
         {
+            _categoryName = categoryName;
             _logs = logs;
         }
 
-        public ILogger CreateLogger(string categoryName)
+        public IDisposable BeginScope<TState>(TState state)
         {
-            return new ServiceLogger(categoryName, _logs);
+            return null!;
         }
 
-        public void Dispose()
+        public bool IsEnabled(LogLevel logLevel)
         {
+            return true;
         }
 
-        private class ServiceLogger : ILogger
+        public void Log<TState>(LogLevel logLevel, EventId eventId, TState state, Exception? exception, Func<TState, Exception, string>? formatter)
         {
-            private readonly string _categoryName;
-            private readonly Subject<string> _logs;
-
-            public ServiceLogger(string categoryName, Subject<string> logs)
+            if (exception != null)
             {
-                _categoryName = categoryName;
-                _logs = logs;
-            }
-
-            public IDisposable BeginScope<TState>(TState state)
-            {
-                return null!;
-            }
-
-            public bool IsEnabled(LogLevel logLevel)
-            {
-                return true;
-            }
-
-            public void Log<TState>(LogLevel logLevel, EventId eventId, TState state, Exception? exception, Func<TState, Exception, string>? formatter)
-            {
-                if (exception != null)
+                if (formatter != null)
                 {
-                    if (formatter != null)
-                    {
-                        _logs.OnNext($"[{logLevel}]: {formatter(state, exception)}");
-                    }
-
-                    _logs.OnNext(exception.ToString());
+                    _logs.OnNext($"[{logLevel}]: {formatter(state, exception)}");
                 }
+
+                _logs.OnNext(exception.ToString());
             }
         }
     }

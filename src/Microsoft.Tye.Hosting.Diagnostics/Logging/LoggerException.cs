@@ -18,6 +18,7 @@ namespace Microsoft.Tye.Hosting.Diagnostics.Logging
             _exceptionMessage = exceptionMessage;
         }
 
+        [Obsolete]
         public override void GetObjectData(SerializationInfo info, StreamingContext context)
         {
             info.AddValue("ClassName", _exceptionMessage.GetProperty("TypeName").GetString(), typeof(string)); // Do not rename (binary serialization)

@@ -2,7 +2,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
+    <TargetFramework>net8.0</TargetFramework>
     <AssemblyName>Microsoft.Tye.E2ETest</AssemblyName>
     <IsTestProject>true</IsTestProject>
     <!-- TODO: Investigate Ubuntu >16.04 test hangs and Mac test failures and re-enable E2E tests. -->
@@ -43,7 +43,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Update="Microsoft.NET.Test.Sdk" Version="16.6.1" />
+    <PackageReference Update="Microsoft.NET.Test.Sdk" Version="17.5.0" />
   </ItemGroup>
 
 </Project>
