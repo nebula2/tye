@@ -38,10 +38,7 @@ namespace Microsoft.Tye.Hosting.Diagnostics
                         store[traceEvent.ProviderName + "/" + payload.Name] = payload.Value;
                     }
                 }
-                catch (Exception ex)
-                {
-                    _logger.LogError(ex, "Error processing counter for {ProviderName}:{EventName}", traceEvent.ProviderName, traceEvent.EventName);
-                }
+                catch { }
             };
 
             return new NullDisposable();
