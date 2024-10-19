@@ -18,8 +18,9 @@ namespace Microsoft.Tye.Hosting.Diagnostics.Logging
             _exceptionMessage = exceptionMessage;
         }
 
-        [Obsolete]
+#pragma warning disable CS0672 // Member overrides obsolete member
         public override void GetObjectData(SerializationInfo info, StreamingContext context)
+#pragma warning restore CS0672 // Member overrides obsolete member
         {
             info.AddValue("ClassName", _exceptionMessage.GetProperty("TypeName").GetString(), typeof(string)); // Do not rename (binary serialization)
             info.AddValue("Message", Message, typeof(string)); // Do not rename (binary serialization)

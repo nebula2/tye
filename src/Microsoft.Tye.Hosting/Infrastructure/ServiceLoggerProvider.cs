@@ -21,18 +21,14 @@ internal class ServiceLoggerProvider(Subject<string> logs) : ILoggerProvider
     {
     }
 
-    private class ServiceLogger : ILogger
+    private class ServiceLogger(string categoryName, Subject<string> logs) : ILogger
     {
-        private readonly string _categoryName;
-        private readonly Subject<string> _logs;
+        private readonly string _categoryName = categoryName;
+        private readonly Subject<string> _logs = logs;
 
-        public ServiceLogger(string categoryName, Subject<string> logs)
-        {
-            _categoryName = categoryName;
-            _logs = logs;
-        }
-
+#pragma warning disable CS8633 // Nullability in constraints for type parameter doesn't match the constraints for type parameter in implicitly implemented interface method'.
         public IDisposable BeginScope<TState>(TState state)
+#pragma warning restore CS8633 // Nullability in constraints for type parameter doesn't match the constraints for type parameter in implicitly implemented interface method'.
         {
             return null!;
         }
