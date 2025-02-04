@@ -51,13 +51,13 @@ Install the [Tye Visual Studio Code extension](https://marketplace.visualstudio.
 This will install the newest available build from our CI.
 
 ```txt
-dotnet tool install -g Microsoft.Tye --version "0.12.0-*" --add-source https://pkgs.dev.azure.com/dnceng/public/_packaging/dotnet6/nuget/v3/index.json
+dotnet tool install -g Microsoft.Tye --version "0.12.0-*" --add-source https://pkgs.dev.azure.com/dnceng/public/_packaging/dotnet9/nuget/v3/index.json
 ```
 
 If you already have a build installed and you want to update, replace `install` with `update`:
 
 ```txt
-dotnet tool update -g Microsoft.Tye --version "0.12.0-*" --add-source https://pkgs.dev.azure.com/dnceng/public/_packaging/dotnet6/nuget/v3/index.json
+dotnet tool update -g Microsoft.Tye --version "0.12.0-*" --add-source https://pkgs.dev.azure.com/dnceng/public/_packaging/dotnet9/nuget/v3/index.json
 ```
 
 > :bulb: Note that the version numbers for our CI builds and released packages will usually be different.
@@ -69,7 +69,7 @@ If you are using CI builds of Tye we also recommend using CI builds of our libra
 <configuration>
   <packageSources>
     <clear />
-    <add key="dotnet6" value="https://pkgs.dev.azure.com/dnceng/public/_packaging/dotnet6/nuget/v3/index.json" />
+    <add key="dotnet9" value="https://pkgs.dev.azure.com/dnceng/public/_packaging/dotnet9/nuget/v3/index.json" />
     <add key="nuget" value="https://api.nuget.org/v3/index.json" />
   </packageSources>
 </configuration>
