@@ -375,34 +375,34 @@ namespace Microsoft.Tye.Hosting
                             }
                         };
 
-                        if (_options.Watch && (service.Description.RunInfo is ProjectRunInfo runInfo))
-                        {
-                            var projectFile = runInfo.ProjectFile.FullName;
-                            var fileSetFactory = new MsBuildFileSetFactory(_logger,
-                                projectFile,
-                                waitOnError: true,
-                                trace: false);
-                            environment["DOTNET_WATCH"] = "1";
+                        //if (_options.Watch && (service.Description.RunInfo is ProjectRunInfo runInfo))
+                        //{
+                        //    var projectFile = runInfo.ProjectFile.FullName;
+                        //    var fileSetFactory = new MsBuildFileSetFactory(_logger,
+                        //        projectFile,
+                        //        waitOnError: true,
+                        //        trace: false);
+                        //    environment["DOTNET_WATCH"] = "1";
 
-                            await new DotNetWatcher(_logger)
-                                .WatchAsync(processInfo, fileSetFactory, replica, status.StoppingTokenSource.Token);
-                        }
-                        else if (_options.Watch && (service.Description.RunInfo is AzureFunctionRunInfo azureFunctionRunInfo) && !string.IsNullOrEmpty(azureFunctionRunInfo.ProjectFile))
-                        {
-                            var projectFile = azureFunctionRunInfo.ProjectFile;
-                            var fileSetFactory = new MsBuildFileSetFactory(_logger,
-                                projectFile,
-                                waitOnError: true,
-                                trace: false);
-                            environment["DOTNET_WATCH"] = "1";
+                        //    await new DotNetWatcher(_logger)
+                        //        .WatchAsync(processInfo, fileSetFactory, replica, status.StoppingTokenSource.Token);
+                        //}
+                        //else if (_options.Watch && (service.Description.RunInfo is AzureFunctionRunInfo azureFunctionRunInfo) && !string.IsNullOrEmpty(azureFunctionRunInfo.ProjectFile))
+                        //{
+                        //    var projectFile = azureFunctionRunInfo.ProjectFile;
+                        //    var fileSetFactory = new MsBuildFileSetFactory(_logger,
+                        //        projectFile,
+                        //        waitOnError: true,
+                        //        trace: false);
+                        //    environment["DOTNET_WATCH"] = "1";
 
-                            await new DotNetWatcher(_logger)
-                                .WatchAsync(processInfo, fileSetFactory, replica, status.StoppingTokenSource.Token);
-                        }
-                        else
-                        {
+                        //    await new DotNetWatcher(_logger)
+                        //        .WatchAsync(processInfo, fileSetFactory, replica, status.StoppingTokenSource.Token);
+                        //}
+                        //else
+                        //{
                             await ProcessUtil.RunAsync(processInfo, status.StoppingTokenSource.Token, throwOnError: false);
-                        }
+                        //}
                     }
                     catch (Exception ex)
                     {
