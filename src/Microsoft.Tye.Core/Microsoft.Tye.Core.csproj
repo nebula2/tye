@@ -37,4 +37,8 @@
     <Compile Include="..\shared\DirectoryExtensions.cs" Link="DirectoryExtensions.cs" />
   </ItemGroup>
 
+  <PropertyGroup>
+  <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+</PropertyGroup>
+
 </Project>
