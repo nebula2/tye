@@ -3,13 +3,13 @@
     "allowPrerelease": true
   },
   "tools": {
-    "dotnet": "9.0.0",
+    "dotnet": "9.0",
     "runtimes": {
       "dotnet": [
-        "9.0.0"
+        "9.0"
       ],
       "aspnetcore": [
-        "9.0.0"
+        "9.0"
       ]
     }
   },
