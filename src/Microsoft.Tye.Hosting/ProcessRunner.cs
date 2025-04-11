@@ -153,7 +153,9 @@ namespace Microsoft.Tye.Hosting
 
                 _logger.LogInformation("Building projects");
 
-                var buildResult = await ProcessUtil.RunAsync("dotnet", $"build --no-restore \"{projectPath}\" /nologo", throwOnError: false, workingDirectory: application.ContextDirectory);
+                string args = $"build --no-restore \"{projectPath}\" /nologo";
+
+                var buildResult = await ProcessUtil.RunAsync("dotnet", args, throwOnError: false, workingDirectory: application.ContextDirectory);
 
                 if (buildResult.ExitCode != 0)
                 {

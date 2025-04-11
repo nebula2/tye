@@ -8,6 +8,7 @@
     <PackageId>Microsoft.Tye</PackageId>
     <ToolCommandName>tye</ToolCommandName>
     <PackAsTool>true</PackAsTool>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
 
   <ItemGroup>

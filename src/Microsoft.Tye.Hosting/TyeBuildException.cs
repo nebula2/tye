@@ -21,9 +21,5 @@ namespace Microsoft.Tye.Hosting
         public TyeBuildException(string? message, Exception? innerException) : base(message, innerException)
         {
         }
-
-        protected TyeBuildException(SerializationInfo info, StreamingContext context) : base(info, context)
-        {
-        }
     }
 }
